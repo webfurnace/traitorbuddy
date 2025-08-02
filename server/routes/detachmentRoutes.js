@@ -16,7 +16,7 @@ router.post('/', async (req, res) => {
 // 📥 GET /api/detachments — Fetch all detachments
 router.get('/', async (req, res) => {
   try {
-    const detachments = await Detachment.find();
+    const detachments = await Detachment.find({});
     res.json(detachments);
   } catch (err) {
     res.status(500).json({ error: err.message });

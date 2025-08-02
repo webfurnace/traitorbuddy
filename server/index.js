@@ -1,8 +1,14 @@
+
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
-const mongoose = require('mongoose');   //DB ORM
+const detachmentRoutes = require('./routes/detachmentRoutes');
+
+//Load Config and Secrets off Server
 require('dotenv').config();
+
+//ORM and Database
+const mongoose = require('mongoose');   //DB ORM
 
 //DB Connection
 mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/TraitorBuddy', {
@@ -26,6 +32,10 @@ app.get('/api/ping', (req, res) => res.json({ message: 'pong' }));
 app.get('/{*splat}', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
+
+//detachment route
+app.use('/api/detachments', detachmentRoutes);
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
