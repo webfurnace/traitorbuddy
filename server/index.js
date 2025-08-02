@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const cors = require('cors');
 const mongoose = require('mongoose');   //DB ORM
+require('dotenv').config();
 
 //DB Connection
 mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/TraitorBuddy', {
