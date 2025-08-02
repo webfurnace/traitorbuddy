@@ -28,13 +28,12 @@ app.use(express.static(path.join(__dirname, '../client/build')));
 // API routes (placeholder)
 app.get('/api/ping', (req, res) => res.json({ message: 'pong' }));
 
+app.use('/api/detachments', detachmentRoutes);
+
 // Catch-all to serve React
 app.get('/{*splat}', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
-
-//detachment route
-app.use('/api/detachments', detachmentRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
