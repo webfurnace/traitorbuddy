@@ -1,11 +1,11 @@
 import React from 'react';
-import FormControls from './components/FormControls';
+import DetachmentManager from './components/DetachmentManager';
 
 function App() {
   return (
-    <div className="App">
-      <h1>TraitorBuddy</h1>
-      <FormControls />
+    <div style={{ padding: '2rem' }}>
+      <h1>Traitor Buddy</h1>
+      <DetachmentManager />
     </div>
   );
 }
