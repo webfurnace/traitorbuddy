@@ -2,7 +2,9 @@ const mongoose = require('mongoose');   //DB ORM
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
-const DetachmentTypeRoutes = require('./routes/detachment-types');
+const DetachmentTypeRoute = require('./routes/detachment-types');
+const LegionRoute = require('./routes/legions');
+const UnitTypeRoute = require('./routes/unit-types')
 
 //Load Config and Secrets off Server
 require('dotenv').config();
@@ -28,7 +30,9 @@ app.use(express.static(path.join(__dirname, '../client/build')));
 // API routes (placeholder)
 app.get('/api/ping', (req, res) => res.json({ message: 'pong' }));
 
-app.use('/api/detachment-types', DetachmentTypeRoutes);
+app.use('/api/detachment-types', DetachmentTypeRoute);
+app.use('/api/legion', LegionRoute);
+app.use('/api/unit-types', UnitTypeRoute);
 
 // Catch-all to serve React
 app.get('/{*splat}', (req, res) => {
