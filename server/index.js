@@ -5,6 +5,7 @@ const cors = require('cors');
 const DetachmentTypeRoute = require('./routes/detachment-types');
 const LegionRoute = require('./routes/legions');
 const UnitTypeRoute = require('./routes/unit-types')
+const UnitRoute = require('./routes/units')
 
 //Load Config and Secrets off Server
 require('dotenv').config();
@@ -31,8 +32,9 @@ app.use(express.static(path.join(__dirname, '../client/build')));
 app.get('/api/ping', (req, res) => res.json({ message: 'pong' }));
 
 app.use('/api/detachment-types', DetachmentTypeRoute);
-app.use('/api/legion', LegionRoute);
+app.use('/api/legions', LegionRoute);
 app.use('/api/unit-types', UnitTypeRoute);
+app.use('/api/units', UnitRoute);
 
 // Catch-all to serve React
 app.get('/{*splat}', (req, res) => {

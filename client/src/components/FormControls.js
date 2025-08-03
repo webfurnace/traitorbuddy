@@ -1,26 +1,23 @@
-import React, { useState } from 'react';
+// src/components/FormControls.js
+import React from 'react';
 
-function FormControls() {
-  const [input, setInput] = useState('');
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    alert(`Submitted: ${input}`);
-  };
-
+const FormControls = ({ units = [], onSelectChange }) => {
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Enter something:
-        <input
-          type="text"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-        />
-      </label>
-      <button type="submit">Submit</button>
-    </form>
+    <div className="form-controls">
+      <select onChange={onSelectChange}>
+        <option value="">Select a unit</option>
+        {units.map((unit, index) => (
+          <option key={index} value={unit.name}>
+            {unit.name}
+          </option>
+        ))}
+      </select>
+
+      <button type="button">
+        Action
+      </button>
+    </div>
   );
-}
+};
 
 export default FormControls;

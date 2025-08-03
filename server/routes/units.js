@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const Legion = require('../models/Legion'); // adjust path as needed
+const Unit = require('../models/Unit'); // adjust path as needed
 
-// 📥 GET /api/legions — Fetch all detachments
+// 📥 GET /api/units — Fetch all detachments
 router.get('/', async (req, res) => {
   try {
-    const legion = await Legion.find({});
-    res.json(legion);
+    const unit = await Unit.find({});
+    res.json(unit);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
