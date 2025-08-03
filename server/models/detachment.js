@@ -34,3 +34,4 @@ const detachmentSchema = new mongoose.Schema({
 });
 
 const Detachment = mongoose.model('Detachment', detachmentSchema);
+module.exports = Detachment;

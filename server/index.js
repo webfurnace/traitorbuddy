@@ -15,7 +15,7 @@ mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/TraitorBudd
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
-.then(() => console.log('MongoDB connected'))
+.then(() => console.log('Connected to DB: ', mongoose.connection.name))
 .catch(err => console.error('MongoDB error:', err));
 
 const app = express();
