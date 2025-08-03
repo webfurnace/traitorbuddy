@@ -6,12 +6,16 @@ const DetachmentTypeRoute = require('./routes/detachment-types');
 const LegionRoute = require('./routes/legions');
 const UnitTypeRoute = require('./routes/unit-types')
 const UnitRoute = require('./routes/units')
+const DetachmentRoute = require('./routes/detachments')
 
 //Load Config and Secrets off Server
 require('dotenv').config();
 
 //ORM and Database
 
+const app = express();
+app.use(cors());
+app.use(express.json());
 
 //DB Connection
 mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/TraitorBuddy', {
@@ -20,10 +24,6 @@ mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/TraitorBudd
 })
 .then(() => console.log('Connected to DB: ', mongoose.connection.name))
 .catch(err => console.error('MongoDB error:', err));
-
-const app = express();
-app.use(cors());
-app.use(express.json());
 
 // Serve React static files
 app.use(express.static(path.join(__dirname, '../client/build')));
@@ -35,6 +35,7 @@ app.use('/api/detachment-types', DetachmentTypeRoute);
 app.use('/api/legions', LegionRoute);
 app.use('/api/unit-types', UnitTypeRoute);
 app.use('/api/units', UnitRoute);
+app.use('/api/detachments', DetachmentRoute);
 
 // Catch-all to serve React
 app.get('/{*splat}', (req, res) => {
